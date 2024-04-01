@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 const  grey1000 = Color(0xFF050506);
 const  grey900 = Color(0xFF111928);
-const  grey800 = Color(0xFF0F1115);
+const  grey800 = Color(0xFF1E293B);
 const  grey700 = Color(0xFF4B5563);
 const  grey600 = Color(0xFF6B7280);
-const  grey500 = Color(0xFF64666A);
+const  grey500 = Color(0xFF9CA3AF);
 const  grey400 = Color(0xFF64666A);
 const  grey300  = Color(0xFFE5E7EB);
 const  grey200 = Color(0xFFE5E6EB);
@@ -20,5 +20,6 @@ const  green300 = Color(0xFF89D6AD);
 const  green200 = Color(0xFFB1E4C9);
 const  green100 = Color(0xFFDEF7EC);
 const  appRed = Color(0xFFC81E1E);
+const  appYellow = Color(0xFFF7DB84);
 
 

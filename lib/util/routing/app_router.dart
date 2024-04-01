@@ -1,56 +1,67 @@
-
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:krypt/features/auth/dashboard/dashboard_screen.dart';
+import 'package:krypt/data/model/user_entity.dart';
+import 'package:krypt/data/services/shared_preference_service.dart';
 import 'package:krypt/features/auth/login/login_screen.dart';
 import 'package:krypt/features/auth/sign-up/select_fiat_currency_screen.dart';
 import 'package:krypt/features/auth/sign-up/set_up_passcode_authorization_screen.dart';
 import 'package:krypt/features/auth/sign-up/sign_up_screen.dart';
+import 'package:krypt/features/dashboard/dashboard_screen.dart';
 import 'package:krypt/features/onboarding/onboarding_screen.dart';
+import 'package:krypt/features/receive_token/receive_token_screen.dart';
+import 'package:krypt/features/send_token/enter_amount_to_send_screen.dart';
+import 'package:krypt/features/send_token/enter_recipient_address_screen.dart';
+import 'package:krypt/features/send_token/send_token_screen.dart';
+import 'package:krypt/features/send_token/send_token_summary_screen.dart';
+import 'package:krypt/features/send_token/token_sent_successfully_screen.dart';
+import 'package:krypt/features/shared/enter_passcode_screen.dart';
 
 part 'app_router.gr.dart';
 
 @AutoRouterConfig()
 class AppRouter extends _$AppRouter {
-  static const String _onboardingScreen = "/onboarding-screen";
-  static const String _loginScreen = "/login-screen";
-  static const String _signUpScreen = "/sign-up-screen";
-  static const String _setUpPassCodeScreen = "/set-up-passcode-screen";
-  static const String _selectFiatCurrency = "/select_fiat_currency_screen";
-  static const String _dashboardScreenRoute = "/dashboard_screen";
+  final SharedPreferencesService sharedPref;
+
+  AppRouter({required this.sharedPref});
+
+  bool get hasOnboarded => sharedPref.hasFinishedOnBoarding;
+
+  bool get hasSignedUp => sharedPref.userEntity != null;
+
+  String get initialRoute {
+    String initialRoute = '/onboarding-screen';
+    if (!hasOnboarded) {
+      initialRoute = "/sign-up-screen";
+    } else if (sharedPref.userEntity != null) {
+      final UserEntity userEntity = sharedPref.userEntity!;
+      if (userEntity.passcode.isEmpty) {
+        initialRoute = "/set-up-passcode-screen";
+      } else if (userEntity.fiatCurrency.isEmpty) {
+        initialRoute = "/select-fiat-currency-screen";
+      } else {
+        initialRoute = "/dashboard-screen-route";
+      }
+    }
+    return initialRoute;
+  }
 
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: OnBoardingScreenRoute.page, initial: true, path: _onboardingScreen),
-        AutoRoute(page: LoginScreenRoute.page, path: _loginScreen),
-        AutoRoute(page: SignUpScreenRoute.page, path: _signUpScreen),
-        AutoRoute(page: SetUpPassCodeAuthorizationScreenRoute.page, path: _setUpPassCodeScreen),
-        AutoRoute(page: SelectFiatCurrencyScreenRoute.page, path: _selectFiatCurrency),
-        AutoRoute(page: DashboardScreenRoute.page, path: _dashboardScreenRoute),
-        // AutoRoute(page: SelectUserInterestRoute.page, path: selectUserInterest),
-        // AutoRoute(page: VendorCreateAccountBusinessDetailsRoute.page, path: vendorBusinessDetails),
-        // AutoRoute(page: UploadBusinessPictureRoute.page, path: uploadBusinessPicturesScreen),
-        // AutoRoute(page: UserDashboardRoute.page, path: userDashboardScreen),
-        // AutoRoute(page: EditUserPersonalInformationRoute.page, path: editUserPersonalInformationScreen),
-        // AutoRoute(page: ViewVendorBusinessInfoRoute.page, path: viewVendorBusinessInfoScreen),
-        // AutoRoute(page: EditVendorBusinessInfoRoute.page, path: editVendorBusinessInfoScreen),
-        // AutoRoute(page: ContactUsRoute.page, path: contactUsScreen),
-        // AutoRoute(page: ChangePasswordRoute.page, path: changePasswordScreen),
-        // AutoRoute(page: VendorDashboardRoute.page, path: vendorDashboardScreen),
-        // AutoRoute(page: ResetPasswordRoute.page, path: resetPasswordScreen),
-        // AutoRoute(page: SavedBookmarksRoute.page, path: savedBookmarksScreen),
-        // AutoRoute(page: SearchRoute.page, path: searchScreen),
-        // AutoRoute(page: AllCategoryScreenRoute.page, path: allCategoriesScreen),
-        // AutoRoute(page: CategorySearchResultScreenRoute.page, path: categorySearchResultScreen),
-        // AutoRoute(page: VendorDetailScreenRoute.page, path: vendorDetailScreen),
-        // AutoRoute(page: AddReviewScreenRoute.page, path: addReviewScreen),
-        // AutoRoute(page: AccountCreatedSuccessfullyScreenRoute.page, path: accountCreatedSuccessfullyScreen),
-        // AutoRoute(page: ViewUserPersonalInformationRoute.page, path: viewUserPersonalInformationScreen),
-        // AutoRoute(page: PrivacyPolicyScreenRoute.page, path: privacyPolicyScreen),
-        // AutoRoute(page: TermsOfUseUseScreenRoute.page, path: termsOfUseScreen),
-        // AutoRoute(page: VendorProfileIncompleteScreenRoute.page, path: vendorProfileIncompleteScreen),
-        // AutoRoute(page: AccountSuspendedScreenRoute.page, path: accountSuspendedScreen),
-        // AutoRoute(page: AppUpdateScreenRoute.page, path: appUpdateScreen),
+        _buildRouteInfo(OnBoardingScreenRoute.page, initial: initialRoute == "/onboarding-screen"),
+        _buildRouteInfo(LoginScreenRoute.page),
+        _buildRouteInfo(SignUpScreenRoute.page, initial: initialRoute == "/sign-up-screen"),
+        _buildRouteInfo(SetUpPassCodeAuthorizationScreenRoute.page, initial: initialRoute == "/set-up-passcode-screen"),
+        _buildRouteInfo(SelectFiatCurrencyScreenRoute.page, initial: initialRoute == "/select-fiat-currency-screen"),
+        _buildRouteInfo(DashboardScreenRoute.page, initial: initialRoute == "/dashboard-screen-route"),
+        _buildRouteInfo(SendTokenScreenRoute.page),
+        _buildRouteInfo(ReceiveTokenScreenRoute.page),
+        _buildRouteInfo(EnterRecipientAddressScreenRoute.page),
+        _buildRouteInfo(EnterAmountToSendScreenRoute.page),
+        _buildRouteInfo(SendTokenSummaryScreenRoute.page),
+        _buildRouteInfo(EnterPasscodeScreenRoute.page),
       ];
+
+  AutoRoute _buildRouteInfo(PageInfo<dynamic> pageInfo, {bool initial = false}) {
+    return AutoRoute(page: pageInfo, path: "/${pageInfo.name}", initial: initial);
+  }
 }

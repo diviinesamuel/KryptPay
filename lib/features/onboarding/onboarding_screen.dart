@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:krypt/data/services/shared_preference_service.dart';
+import 'package:krypt/di/injection.dart';
 import 'package:krypt/features/components/shared/app_button.dart';
 import 'package:krypt/util/extension_functions.dart';
 import 'package:krypt/util/routing/app_router.dart';
@@ -31,6 +33,7 @@ class OnBoardingScreen extends StatelessWidget {
               title: "Get Started",
               height: 48.0,
               onPress: () {
+                getIt.get<SharedPreferencesService>().setHasFinishedOnBoarding(true);
                 context.router.replace(SignUpScreenRoute());
               },
             ),

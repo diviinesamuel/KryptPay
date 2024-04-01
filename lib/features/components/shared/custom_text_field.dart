@@ -20,32 +20,35 @@ class CustomTextField extends StatefulWidget {
   final int maxLines;
   final bool isReadOnly;
   final VoidCallback? onTap;
+  final int? textLimit;
 
-  const CustomTextField({
-    super.key,
-    required this.controller,
-    this.hintText = "",
-    this.label,
-    this.prefixIcon,
-    this.suffixIcon,
-    this.keyboardType = TextInputType.text,
-    this.validator,
-    this.onChanged,
-    this.obscureText = false,
-    this.labelText,
-    this.errorText,
-    this.textInputAction = TextInputAction.next,
-    this.maxLines = 1,
-    this.isReadOnly = false,
-    this.onTap,
-  });
+  const CustomTextField(
+      {super.key,
+      required this.controller,
+      this.hintText = "",
+      this.label,
+      this.prefixIcon,
+      this.suffixIcon,
+      this.keyboardType = TextInputType.text,
+      this.validator,
+      this.onChanged,
+      this.obscureText = false,
+      this.labelText,
+      this.errorText,
+      this.textInputAction = TextInputAction.next,
+      this.maxLines = 1,
+      this.isReadOnly = false,
+      this.onTap,
+      this.textLimit});
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
-  bool get isPasswordField => widget.label != null && widget.label!.toLowerCase().contains('password');
+  bool get isPasswordField =>
+      (widget.label != null && widget.label!.toLowerCase().contains('password')) ||
+      (widget.hintText.isNotEmpty && widget.hintText.toLowerCase().contains("password"));
 
   bool get isEmailField => widget.label != null && widget.label!.toLowerCase().contains('email');
 
@@ -73,6 +76,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
       ]);
     }
 
+    if (widget.textLimit != null) {
+      inputFormatters.addAll([
+        LengthLimitingTextInputFormatter(widget.textLimit),
+      ]);
+    }
+
     super.initState();
   }
 
@@ -85,8 +94,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
           Text(
             widget.label!,
             style: context.textTheme.bodyMedium?.copyWith(
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w400,
               fontSize: 15.0,
+              color: grey900,
             ),
           ),
         const SizedBox(height: 8),

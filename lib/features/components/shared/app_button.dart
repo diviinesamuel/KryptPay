@@ -6,7 +6,7 @@ abstract class _AppButton extends StatelessWidget {
   final String title;
   final Widget startIcon, endIcon;
   final Color backgroundColor;
-  final double width, height, radius;
+  final double width, height, radius, fontSize;
   final VoidCallback? onPress;
   final Color? textColor;
 
@@ -21,6 +21,7 @@ abstract class _AppButton extends StatelessWidget {
     this.radius = 30.0,
     this.onPress,
     this.textColor,
+    this.fontSize = 16,
   });
 
   Widget? buildBody(BuildContext context);
@@ -35,9 +36,7 @@ abstract class _AppButton extends StatelessWidget {
           Container(
             width: width,
             height: height,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(radius),
-                color: backgroundColor),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(radius), color: backgroundColor),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -45,7 +44,10 @@ abstract class _AppButton extends StatelessWidget {
                 Text(
                   title,
                   style: context.textTheme.bodyMedium?.copyWith(
-                      color: textColor ?? Colors.white, fontWeight: FontWeight.w500),
+                    color: textColor ?? Colors.white,
+                    fontWeight: FontWeight.w500,
+                    fontSize: fontSize,
+                  ),
                 ),
                 if (endIcon != const SizedBox.shrink()) endIcon,
               ],
@@ -67,6 +69,7 @@ class AppButton extends _AppButton {
     super.radius,
     super.onPress,
     super.textColor,
+    super.fontSize,
   });
 
   @override
@@ -90,6 +93,7 @@ class AppOutlinedButton extends _AppButton {
     this.startSpacing = 3.0,
     this.borderRadius = 10.0,
     super.radius,
+    super.fontSize,
   });
 
   @override
@@ -99,10 +103,7 @@ class AppOutlinedButton extends _AppButton {
       height: super.height,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(borderRadius),
-        border: Border.all(
-          color: borderColor,
-          width: borderWidth
-        ),
+        border: Border.all(color: borderColor, width: borderWidth),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -111,10 +112,11 @@ class AppOutlinedButton extends _AppButton {
           SizedBox(width: startSpacing),
           Text(
             title,
-            style: context
-                .textTheme
-                .titleMedium
-                ?.copyWith(fontWeight: FontWeight.w400, color: textColor),
+            style: context.textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.w400,
+              color: textColor,
+              fontSize: fontSize,
+            ),
           ),
           super.endIcon
         ],
