@@ -3,11 +3,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:krypt/features/auth/dashboard/dashboard_screen.dart';
+import 'package:krypt/features/auth/dashboard/market_place.dart';
 import 'package:krypt/features/auth/login/login_screen.dart';
 import 'package:krypt/features/auth/sign-up/select_fiat_currency_screen.dart';
 import 'package:krypt/features/auth/sign-up/set_up_passcode_authorization_screen.dart';
 import 'package:krypt/features/auth/sign-up/sign_up_screen.dart';
 import 'package:krypt/features/onboarding/onboarding_screen.dart';
+
+import '../../features/auth/dashboard/confirmation_screen.dart';
+import '../../features/auth/dashboard/swap_asset_screen.dart';
 
 part 'app_router.gr.dart';
 
@@ -19,6 +23,9 @@ class AppRouter extends _$AppRouter {
   static const String _setUpPassCodeScreen = "/set-up-passcode-screen";
   static const String _selectFiatCurrency = "/select_fiat_currency_screen";
   static const String _dashboardScreenRoute = "/dashboard_screen";
+  static const String _marketScreenRoute = "/market_screen";
+  static const String _swapAssetsScreenRoute = "/swap_assets_screen";
+  static const String _confirmationScreenRoute = "/confirmation_screen";
 
   @override
   List<AutoRoute> get routes => [
@@ -28,6 +35,9 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: SetUpPassCodeAuthorizationScreenRoute.page, path: _setUpPassCodeScreen),
         AutoRoute(page: SelectFiatCurrencyScreenRoute.page, path: _selectFiatCurrency),
         AutoRoute(page: DashboardScreenRoute.page, path: _dashboardScreenRoute),
+        AutoRoute(page: MarketScreenRoute.page, path: _marketScreenRoute),
+        AutoRoute(page: SwapAssetsScreenRoute.page, path: _swapAssetsScreenRoute),
+        AutoRoute(page: ConfirmationScreenRoute.page, path: _confirmationScreenRoute),
         // AutoRoute(page: SelectUserInterestRoute.page, path: selectUserInterest),
         // AutoRoute(page: VendorCreateAccountBusinessDetailsRoute.page, path: vendorBusinessDetails),
         // AutoRoute(page: UploadBusinessPictureRoute.page, path: uploadBusinessPicturesScreen),

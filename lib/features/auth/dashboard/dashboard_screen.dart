@@ -1,5 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:krypt/features/auth/dashboard/market_place.dart';
 import 'package:krypt/util/app_icons.dart';
 import 'package:krypt/util/theme/colors.dart';
 
@@ -78,8 +79,23 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ),
       ),
+      body: _buildBody(),
     );
   }
+
+  Widget _buildBody() {
+    switch (_currentIndex) {
+      case 0:
+        return Center(child: Text('Home Screen'));
+      case 1:
+        return const MarketScreen();
+      case 2:
+        return Center(child: Text('History Screen'));
+      case 3:
+        return Center(child: Text('User Screen'));
+      default:
+        return Container(color: Colors.red,); // Handle other cases if necessary
+    }}
 
   Widget _renderBottomNavIcon(
     int index, {

@@ -6,6 +6,10 @@ class AppIcons {
 
   static Widget icGoogle = SvgPicture.asset("assets/icons/ic_google.svg");
   static Widget icCheck = SvgPicture.asset("assets/icons/ic_check.svg");
+  static Widget icSwap = SvgPicture.asset("assets/icons/ic_swap.svg");
+  static Widget icSolana = SvgPicture.asset("assets/icons/ic_solana.svg");
+  static Widget icSwapBlack = SvgPicture.asset("assets/icons/ic_swap_black.svg");
+  static Widget icCoinIcon = SvgPicture.asset("assets/icons/ic_coin_icon.svg");
 
   // Bottom Nav Icons
   static Widget icHistorySelected = SvgPicture.asset("assets/icons/ic_history_selected.svg");

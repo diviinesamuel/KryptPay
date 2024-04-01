@@ -15,6 +15,12 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    ConfirmationScreenRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ConfirmationScreen(),
+      );
+    },
     DashboardScreenRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -25,6 +31,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const LoginScreen(),
+      );
+    },
+    MarketScreenRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MarketScreen(),
       );
     },
     OnBoardingScreenRoute.name: (routeData) {
@@ -55,7 +67,27 @@ abstract class _$AppRouter extends RootStackRouter {
         child: SignUpScreen(key: args.key),
       );
     },
+    SwapAssetsScreenRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SwapAssetsScreen(),
+      );
+    },
   };
+}
+
+/// generated route for
+/// [ConfirmationScreen]
+class ConfirmationScreenRoute extends PageRouteInfo<void> {
+  const ConfirmationScreenRoute({List<PageRouteInfo>? children})
+      : super(
+          ConfirmationScreenRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ConfirmationScreenRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -82,6 +114,20 @@ class LoginScreenRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'LoginScreenRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MarketScreen]
+class MarketScreenRoute extends PageRouteInfo<void> {
+  const MarketScreenRoute({List<PageRouteInfo>? children})
+      : super(
+          MarketScreenRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MarketScreenRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -171,4 +217,18 @@ class SignUpScreenRouteArgs {
   String toString() {
     return 'SignUpScreenRouteArgs{key: $key}';
   }
+}
+
+/// generated route for
+/// [SwapAssetsScreen]
+class SwapAssetsScreenRoute extends PageRouteInfo<void> {
+  const SwapAssetsScreenRoute({List<PageRouteInfo>? children})
+      : super(
+          SwapAssetsScreenRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SwapAssetsScreenRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
