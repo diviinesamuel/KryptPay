@@ -1,6 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:krypt/features/dashboard/home/home_screen.dart';
+import 'package:krypt/features/dashboard/market_place_screen.dart';
 import 'package:krypt/util/app_icons.dart';
 import 'package:krypt/util/theme/colors.dart';
 
@@ -16,6 +17,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   int _currentIndex = 0;
 
   void setCurrentIndex(int index) {
+    if (_currentIndex == index) return;
     setState(() {
       _currentIndex = index;
     });
@@ -23,7 +25,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   final List<Widget> _destinations = [
     const HomeScreen(),
-
+    const MarketPlaceScreen(),
+    Container(),
+    Container(),
+    Container(),
   ];
 
   @override
@@ -55,7 +60,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   onTap: () => setCurrentIndex(1),
                 ),
                 GestureDetector(
-                  onTap: () => setCurrentIndex(-1),
+                  onTap: () => setCurrentIndex(2),
                   child: Container(
                     height: 50,
                     width: 50,
@@ -67,18 +72,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   padding: const EdgeInsets.only(top: 4.0),
                   child: _renderBottomNavIcon(
                     _currentIndex,
-                    positionIndex: 2,
+                    positionIndex: 3,
                     selectedIcon: AppIcons.icHistorySelected,
                     unSelectedIcon: AppIcons.icHistoryUnSelected,
-                    onTap: () => setCurrentIndex(2),
+                    onTap: () => setCurrentIndex(3),
                   ),
                 ),
                 _renderBottomNavIcon(
                   _currentIndex,
-                  positionIndex: 3,
+                  positionIndex: 4,
                   selectedIcon: AppIcons.icUserUnSelected,
                   unSelectedIcon: AppIcons.icUserUnSelected,
-                  onTap: () => setCurrentIndex(3),
+                  onTap: () => setCurrentIndex(4),
                 )
               ],
             ),

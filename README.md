@@ -1,3 +1,7 @@
+# KryptPay
+
+A seamless cryptocurrency payment platform
+
 # krypt
 
 A point of sale payment application built using the solana framework.

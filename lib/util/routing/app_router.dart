@@ -7,6 +7,8 @@ import 'package:krypt/features/auth/sign-up/select_fiat_currency_screen.dart';
 import 'package:krypt/features/auth/sign-up/set_up_passcode_authorization_screen.dart';
 import 'package:krypt/features/auth/sign-up/sign_up_screen.dart';
 import 'package:krypt/features/dashboard/dashboard_screen.dart';
+import 'package:krypt/features/dashboard/market_place_screen.dart';
+import 'package:krypt/features/dashboard/swap_asset_screen.dart';
 import 'package:krypt/features/onboarding/onboarding_screen.dart';
 import 'package:krypt/features/receive_token/receive_token_screen.dart';
 import 'package:krypt/features/send_token/enter_amount_to_send_screen.dart';
@@ -28,7 +30,7 @@ class AppRouter extends _$AppRouter {
 
   bool get hasSignedUp => sharedPref.userEntity != null;
 
-  String get initialRoute {
+  String get _initialRoute {
     String initialRoute = '/onboarding-screen';
     if (!hasOnboarded) {
       initialRoute = "/sign-up-screen";
@@ -47,18 +49,20 @@ class AppRouter extends _$AppRouter {
 
   @override
   List<AutoRoute> get routes => [
-        _buildRouteInfo(OnBoardingScreenRoute.page, initial: initialRoute == "/onboarding-screen"),
+        _buildRouteInfo(OnBoardingScreenRoute.page, initial: _initialRoute == "/onboarding-screen"),
         _buildRouteInfo(LoginScreenRoute.page),
-        _buildRouteInfo(SignUpScreenRoute.page, initial: initialRoute == "/sign-up-screen"),
-        _buildRouteInfo(SetUpPassCodeAuthorizationScreenRoute.page, initial: initialRoute == "/set-up-passcode-screen"),
-        _buildRouteInfo(SelectFiatCurrencyScreenRoute.page, initial: initialRoute == "/select-fiat-currency-screen"),
-        _buildRouteInfo(DashboardScreenRoute.page, initial: initialRoute == "/dashboard-screen-route"),
+        _buildRouteInfo(SignUpScreenRoute.page, initial: _initialRoute == "/sign-up-screen"),
+        _buildRouteInfo(SetUpPassCodeAuthorizationScreenRoute.page, initial: _initialRoute == "/set-up-passcode-screen"),
+        _buildRouteInfo(SelectFiatCurrencyScreenRoute.page, initial: _initialRoute == "/select-fiat-currency-screen"),
+        _buildRouteInfo(DashboardScreenRoute.page, initial: _initialRoute == "/dashboard-screen-route"),
         _buildRouteInfo(SendTokenScreenRoute.page),
         _buildRouteInfo(ReceiveTokenScreenRoute.page),
         _buildRouteInfo(EnterRecipientAddressScreenRoute.page),
         _buildRouteInfo(EnterAmountToSendScreenRoute.page),
         _buildRouteInfo(SendTokenSummaryScreenRoute.page),
         _buildRouteInfo(EnterPasscodeScreenRoute.page),
+        _buildRouteInfo(MarketScreenRoute.page),
+        _buildRouteInfo(SwapAssetsScreenRoute.page),
       ];
 
   AutoRoute _buildRouteInfo(PageInfo<dynamic> pageInfo, {bool initial = false}) {

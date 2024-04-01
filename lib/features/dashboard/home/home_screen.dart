@@ -95,22 +95,26 @@ class _BalanceSectionState extends State<_BalanceSection> {
           children: [
             Text("Balance", style: context.textTheme.bodySmall?.copyWith(color: grey600)),
             const SizedBox(height: 4.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(top: !_showBalance ? 10.0 : 0.0),
-                  child: Text(
-                    _showBalance ? "\$23,236.56" : "*********",
-                    style: context.textTheme.displayMedium,
+            Padding(
+              padding: const EdgeInsets.only(left: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: !_showBalance ? 10.0 : 0.0),
+                    child: Text(
+                      _showBalance ? "\$23,236.56" : "*********",
+                      style: context.textTheme.displayMedium,
+                    ),
                   ),
-                ),
-                IconButton(
-                  iconSize: 20,
-                  onPressed: _toggleShowBalance,
-                  icon: Icon(_showBalance ? Icons.visibility : Icons.visibility_off),
-                )
-              ],
+                  IconButton(
+                    iconSize: 20,
+                    onPressed: _toggleShowBalance,
+                    icon: Icon(_showBalance ? Icons.visibility : Icons.visibility_off),
+                  )
+                ],
+              ),
             ),
             const SizedBox(height: 8.0),
             Text(

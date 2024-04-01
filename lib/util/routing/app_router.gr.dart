@@ -53,6 +53,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: LoginScreen(key: args.key),
       );
     },
+    MarketScreenRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MarketPlaceScreen(),
+      );
+    },
     OnBoardingScreenRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -68,7 +74,7 @@ abstract class _$AppRouter extends RootStackRouter {
     SelectFiatCurrencyScreenRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: SelectFiatCurrencyScreen(),
+        child: const SelectFiatCurrencyScreen(),
       );
     },
     SendTokenScreenRoute.name: (routeData) {
@@ -97,6 +103,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: SignUpScreen(key: args.key),
+      );
+    },
+    SwapAssetsScreenRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SwapAssetsScreen(),
       );
     },
     TokenSentSuccessfullyScreenRoute.name: (routeData) {
@@ -235,6 +247,20 @@ class LoginScreenRouteArgs {
 }
 
 /// generated route for
+/// [MarketPlaceScreen]
+class MarketScreenRoute extends PageRouteInfo<void> {
+  const MarketScreenRoute({List<PageRouteInfo>? children})
+      : super(
+          MarketScreenRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MarketScreenRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [OnBoardingScreen]
 class OnBoardingScreenRoute extends PageRouteInfo<void> {
   const OnBoardingScreenRoute({List<PageRouteInfo>? children})
@@ -361,6 +387,20 @@ class SignUpScreenRouteArgs {
   String toString() {
     return 'SignUpScreenRouteArgs{key: $key}';
   }
+}
+
+/// generated route for
+/// [SwapAssetsScreen]
+class SwapAssetsScreenRoute extends PageRouteInfo<void> {
+  const SwapAssetsScreenRoute({List<PageRouteInfo>? children})
+      : super(
+          SwapAssetsScreenRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SwapAssetsScreenRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
