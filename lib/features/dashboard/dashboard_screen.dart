@@ -1,6 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:krypt/features/auth/dashboard/market_place.dart';
+import 'package:krypt/features/dashboard/home/home_screen.dart';
+import 'package:krypt/features/dashboard/market_place_screen.dart';
 import 'package:krypt/util/app_icons.dart';
 import 'package:krypt/util/theme/colors.dart';
 
@@ -16,15 +17,25 @@ class _DashboardScreenState extends State<DashboardScreen> {
   int _currentIndex = 0;
 
   void setCurrentIndex(int index) {
+    if (_currentIndex == index) return;
     setState(() {
       _currentIndex = index;
     });
   }
 
+  final List<Widget> _destinations = [
+    const HomeScreen(),
+    const MarketPlaceScreen(),
+    Container(),
+    Container(),
+    Container(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: grey100,
+      body: SafeArea(child: _destinations[_currentIndex]),
       bottomNavigationBar: SizedBox(
         height: 70,
         child: Material(
@@ -49,7 +60,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   onTap: () => setCurrentIndex(1),
                 ),
                 GestureDetector(
-                  onTap: () => setCurrentIndex(-1),
+                  onTap: () => setCurrentIndex(2),
                   child: Container(
                     height: 50,
                     width: 50,
@@ -61,41 +72,26 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   padding: const EdgeInsets.only(top: 4.0),
                   child: _renderBottomNavIcon(
                     _currentIndex,
-                    positionIndex: 2,
+                    positionIndex: 3,
                     selectedIcon: AppIcons.icHistorySelected,
                     unSelectedIcon: AppIcons.icHistoryUnSelected,
-                    onTap: () => setCurrentIndex(2),
+                    onTap: () => setCurrentIndex(3),
                   ),
                 ),
                 _renderBottomNavIcon(
                   _currentIndex,
-                  positionIndex: 3,
+                  positionIndex: 4,
                   selectedIcon: AppIcons.icUserUnSelected,
                   unSelectedIcon: AppIcons.icUserUnSelected,
-                  onTap: () => setCurrentIndex(3),
+                  onTap: () => setCurrentIndex(4),
                 )
               ],
             ),
           ),
         ),
       ),
-      body: _buildBody(),
     );
   }
-
-  Widget _buildBody() {
-    switch (_currentIndex) {
-      case 0:
-        return Center(child: Text('Home Screen'));
-      case 1:
-        return const MarketScreen();
-      case 2:
-        return Center(child: Text('History Screen'));
-      case 3:
-        return Center(child: Text('User Screen'));
-      default:
-        return Container(color: Colors.red,); // Handle other cases if necessary
-    }}
 
   Widget _renderBottomNavIcon(
     int index, {

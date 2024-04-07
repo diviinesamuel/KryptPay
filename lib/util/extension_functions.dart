@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 extension BuildContextWrapper on BuildContext {
   double get height {
@@ -20,6 +21,12 @@ extension BuildContextWrapper on BuildContext {
         ),
       ),
     );
+  }
+}
+
+extension CopyWithExtension on SvgPicture {
+  SvgPicture copyWith({Color? color, required String assetName}) {
+    return SvgPicture.asset(assetName, color: color);
   }
 }
 

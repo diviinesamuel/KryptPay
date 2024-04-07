@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "604565796923",
+    "project_id": "krypt-ec83a",
+    "storage_bucket": "krypt-ec83a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604565796923:android:9f6febf51b17c2505f041e",
+        "android_client_info": {
+          "package_name": "com.krypt.krypt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvr8-BrUzJN6sEZtZWWeb_zvShnFDOTK0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

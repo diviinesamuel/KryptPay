@@ -20,4 +20,11 @@ class AppIcons {
   static Widget icMarketSelected = SvgPicture.asset("assets/icons/ic_market_selected.svg");
   static Widget icUserUnSelected = SvgPicture.asset("assets/icons/ic_user_unselected.svg");
   static Widget icQrCodeScanner = SvgPicture.asset("assets/icons/ic_qr_code.svg");
+  static Widget icTwoCoins = SvgPicture.asset("assets/icons/ic_two_coins.svg");
+  static Widget icOutgoing = SvgPicture.asset("assets/icons/ic_outgoing.svg");
+
+  static Widget icChevronDown = SvgPicture.asset(
+    "assets/icons/ic_chevron_down.svg",
+    fit: BoxFit.cover,
+  );
 }
